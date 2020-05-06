@@ -1,7 +1,7 @@
-# coronapp
+# Coronapp
 Clonando CoronApp con Angular y Google Charts.
 
-## instrucciones
+## Instrucciones
 Si ya tienes NodeJS instalado clona este repositorio 
 e ingresa lo siguiente en la terminal desde la raíz del proyecto:
 
