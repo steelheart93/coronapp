@@ -36,6 +36,21 @@ export class CifrasComponent implements OnInit {
       },
       error => console.log(error)
     )
+
+    let frame = document.getElementById("frame");
+    frame.classList.add('invisible');
+
+    let loading = document.getElementById("loading");
+    loading.classList.remove('invisible');
   }
 
+  loadFrame() {
+    console.log("frame is loaded");
+
+    let loading = document.getElementById("loading");
+    loading.classList.add('invisible');
+
+    let frame = document.getElementById("frame");
+    frame.classList.remove('invisible');
+  }
 }

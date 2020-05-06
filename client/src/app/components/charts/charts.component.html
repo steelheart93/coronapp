@@ -1,0 +1,12 @@
+<h1>Gráficos con Google Charts</h1>
+
+<div class="row p-4">
+    <div class="col-md-6">
+        <google-chart [title]="pieChart_1.title" [type]="pieChart_1.type" [columns]="pieChart_1.columnNames"
+            [data]="pieChart_1.data" [options]="pieChart_1.options"></google-chart>
+    </div>
+    <div class="col-md-6">
+        <google-chart [title]="barChart_1.title" [type]="barChart_1.type" [columns]="barChart_1.columnNames"
+            [data]="barChart_1.data"></google-chart>
+    </div>
+</div>

@@ -1,29 +1,46 @@
-<h1 class="text-dark">Cifras totales en Colombia</h1>
+<h1 class="text-primary">Cifras totales en Colombia</h1>
 
 <div class="row p-4">
-    <div class="col-md-6">
-        <div class="card bg-warning">
-            <div class="card-body">
-                <h5 class="card-title">{{ totalConfirmados }}</h5>
-                <p class="card-text">Casos Confirmados</p>
-                <a href="#" class="card-link">Ver mapa interactivo -></a>
+    <div class="col-md-4">
+        <div class="row p-2">
+            <div class="col">
+                <div class="card bg-warning">
+                    <div class="card-body">
+                        <h5 class="card-title text-light">{{ totalConfirmados }}</h5>
+                        <p class="card-text confirmados">Casos Confirmados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col">
+                <div class="card bg-danger">
+                    <div class="card-body">
+                        <h5 class="card-title text-light">{{ totalMuertes }}</h5>
+                        <p class="card-text muertes">Muertes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col">
+                <div class="card bg-info">
+                    <div class="card-body text-light">
+                        <h5 class="card-title">{{ totalRecuperados }}</h5>
+                        <p class="card-text recuperados">Recuperados</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card bg-info">
-            <div class="card-body">
-                <h5 class="card-title">{{ totalMuertes }}</h5>
-                <p class="card-text">Muertes</p>
-            </div>
+
+    <div class="col-md-8">
+        <div class="position-absolute" id="loading">
+            <img class="m-4 p-4" width="30%" height="50%" src="/assets/loading.gif" alt="loading">
+            <img class="rounded m-4 p-4" width="30%" height="50%" src="/assets/colombia.gif" alt="loading">
         </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card bg-info">
-            <div class="card-body">
-                <h5 class="card-title">{{ totalRecuperados }}</h5>
-                <p class="card-text">Recuperados</p>
-            </div>
-        </div>
+
+        <iframe width="100%" height="100%" frameborder="none" (load)="loadFrame()" id="frame"
+            src="https://www.google.com/maps/d/embed?mid=1pNpw53gSL8lRn-V0k2Zb5FnD9Y31dYSE"></iframe>
     </div>
 </div>
