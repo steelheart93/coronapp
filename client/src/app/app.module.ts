@@ -11,6 +11,7 @@ import { DatosComponent } from './components/datos/datos.component';
 import { ChartsComponent } from './components/charts/charts.component';
 
 import { GenericService } from './services/generic.service';
+import { AboutComponent } from './components/about/about.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { GenericService } from './services/generic.service';
     NavigationComponent,
     CifrasComponent,
     DatosComponent,
-    ChartsComponent
+    ChartsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

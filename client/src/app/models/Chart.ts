@@ -4,6 +4,6 @@ export interface Chart {
     title?: string,
     type?: ChartType,
     columnNames?: Column[],
-    data?: any,
+    data?: any[][],
     options?: {}
 };
