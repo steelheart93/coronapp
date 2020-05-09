@@ -11,19 +11,31 @@ export class GenericService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * @returns Esta función esta condicionada a retornar un arreglo de objetos JSON.
+   */
   getRoot(): Observable<any[]> {
-    return this.http.get<any[]>(this.API_URI + "?$limit=50");
+    return this.http.get<{}[]>(this.API_URI + "?$limit=50");
   }
 
-  getTotalConfirmados() {
-    return this.http.get(`${this.API_URI}?$select=count(*) AS confirmados`);
+  /**
+   * @returns Esta función esta condicionada a retornar un arreglo de objetos JSON.
+   */
+  getTotalConfirmados(): Observable<any[]> {
+    return this.http.get<{}[]>(`${this.API_URI}?$select=count(*) AS confirmados`);
   }
 
-  getTotalMuertes() {
-    return this.http.get(`${this.API_URI}?$select=count(*) AS muertes&$where=(atenci_n='Fallecido')`);
+  /**
+   * @returns Esta función esta condicionada a retornar un arreglo de objetos JSON.
+   */
+  getTotalAtenciones(): Observable<any[]> {
+    return this.http.get<{}[]>(`${this.API_URI}?$select=atenci_n AS atencion, count(atenci_n) AS count&$group=atenci_n&$having=count > 0`);
   }
 
-  getTotalRecuperados() {
-    return this.http.get(`${this.API_URI}?$select=count(*) AS recuperados&$where=(atenci_n='Recuperado')`);
+  /**
+   * @returns Esta función esta condicionada a retornar un arreglo de objetos JSON.
+   */
+  getTotalDepartamentos(): Observable<any[]> {
+    return this.http.get<{}[]>(`${this.API_URI}?$select=departamento, count(departamento) AS count&$group=departamento&$order=count DESC&$limit=10`);
   }
 }

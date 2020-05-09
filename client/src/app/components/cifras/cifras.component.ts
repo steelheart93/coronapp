@@ -22,17 +22,16 @@ export class CifrasComponent implements OnInit {
       },
       error => console.log(error)
     )
-    this.genericService.getTotalMuertes().subscribe(
+    this.genericService.getTotalAtenciones().subscribe(
       res => {
         console.log(res);
-        this.totalMuertes = res[0].muertes;
-      },
-      error => console.log(error)
-    )
-    this.genericService.getTotalRecuperados().subscribe(
-      res => {
-        console.log(res);
-        this.totalRecuperados = res[0].recuperados;
+        res.forEach((json) => {
+          if (json.atencion === "Fallecido") {
+            this.totalMuertes = json.count;
+          } else if (json.atencion === "Recuperado") {
+            this.totalRecuperados = json.count;
+          }
+        });
       },
       error => console.log(error)
     )
