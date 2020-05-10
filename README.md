@@ -17,3 +17,5 @@ Esto se encargara de instalar los modulos de NodeJS necesarios.
 ## Visualización del Proyecto
 
 ![coronapp](coronapp.png)
+
+https://steelheart93.github.io/coronapp/

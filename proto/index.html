@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Coronavirus en Colombia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div class="container">
+        <br><br>
+        <div class="row">
+            <div class="col-sm-2">
+                <button class="btn btn-warning" title="Inicio" id="inicio">
+                    <img src="favicon.png" alt="Inicio">
+                </button>
+            </div>
+            <div class="col-sm-4">
+                <h1>Coronavirus en Colombia</h1>
+            </div>
+            <div class="col-sm-6">
+                <h4 id="resultados">Resultados en vivo: </h4>
+                <br>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Fecha</button>
+                    <div class="dropdown-menu" id="fechas">
+                        <!-- Fechas -->
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Ciudad</button>
+                    <div class="dropdown-menu" id="ciudades">
+                        <!-- Ciudades -->
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Departamento</button>
+                    <div class="dropdown-menu" id="departamentos">
+                        <!-- Departamentos -->
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Atención</button>
+                    <div class="dropdown-menu" id="atenciones">
+                        <!-- Atenciones -->
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Sexo</button>
+                    <div class="dropdown-menu" id="sexos">
+                        <!-- Sexos -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+        <table class="table table-bordered table-striped table-dark">
+            <thead class="bg-danger">
+                <th>Fecha <button id="fecha" class="btn btn-light btn-sm">&mapstodown;</button></th>
+                <th>Muerte <button id="muerte" class="btn btn-light btn-sm">&mapstodown;</button></th>
+                <th>Ciudad <button id="ciudad" class="btn btn-light btn-sm">&mapstodown;</button></th>
+                <th>Departamento <button id="departamento" class="btn btn-light btn-sm">&mapstodown;</button></th>
+                <th>Atención <button id="atencion" class="btn btn-light btn-sm">&mapstodown;</button></th>
+                <th>Edad <button id="edad" class="btn btn-light btn-sm">&mapstodown;</button></th>
+                <th>Sexo <button id="sexo" class="btn btn-light btn-sm">&mapstodown;</button></th>
+                <th>Procedencia <button id="procedencia" class="btn btn-light btn-sm">&mapstodown;</button></th>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+
+        <br>
+        <footer>
+            <a href="https://www.facebook.com/stiven.munozmurillo/" target="_blank" title="Facebook">
+                Copyright (c) 2020 Stiven Muñoz Murillo, All Rights Reserved.
+            </a>
+            <br><br>
+        </footer>
+    </div>
+</body>
+
+</html>
