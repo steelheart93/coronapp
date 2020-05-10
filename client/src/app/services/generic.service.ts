@@ -16,9 +16,8 @@ export class GenericService {
   /**
    * @returns Esta función esta condicionada a retornar un arreglo de objetos JSON.
    */
-  getRoot(): Observable<any[]> {
+  getFilters(filters: Filter[]): Observable<any[]> {
     let campos = [];
-
     campos.push("id_de_caso AS ID");
     campos.push("fecha_de_notificaci_n AS Fecha");
     campos.push("ciudad_de_ubicaci_n AS Ciudad");
@@ -30,18 +29,12 @@ export class GenericService {
     campos.push("fecha_de_muerte AS Muerte");
     campos.push("fecha_recuperado AS Recuperado");
 
-    return this.http.get<{}[]>(`${this.API_URI}?$select=${campos.join(',')}&$limit=100&$offset=10`);
-  }
-
-  /**
-   * @returns Esta función esta condicionada a retornar un arreglo de objetos JSON.
-   */
-  getFilters(filters: Filter[]): Observable<any[]> {
     let options = filters.map((filter) => {
-      return `$${filter.category}=$${filter.value}`;
+      return `${filter.category}='${filter.value}'`;
     }).join("&");
 
-    return this.http.get<{}[]>(`${this.API_URI}?${options}`);
+    console.log(`${this.API_URI}?$select=${campos.join(',')}&$limit=100&$offset=0&${options}`);
+    return this.http.get<{}[]>(`${this.API_URI}?$select=${campos.join(',')}&$limit=100&$offset=0&${options}`);
   }
 
   /**

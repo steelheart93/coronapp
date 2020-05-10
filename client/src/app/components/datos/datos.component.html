@@ -2,7 +2,7 @@
 
 <div class="row p-4">
     <select class="col-md-4 p-2 btn btn-secondary" *ngFor="let drop of drops" (change)="filtrar($event.target.value)">
-        <option value="undefined">{{ drop.title }}</option>
+        <option [value]="[drop.group,'undefined']">{{ drop.title }}</option>
         <hr>
         <option *ngFor="let item of drop.items" [value]="[drop.group,item]">
             {{ item }}

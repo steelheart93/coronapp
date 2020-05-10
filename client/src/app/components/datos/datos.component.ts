@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Chart } from '../../models/Chart';
-import { ChartType } from 'angular-google-charts';
+import { Drop } from '../../models/Drop';
+import { Filter } from '../../models/Filter';
 
+import { ChartType } from 'angular-google-charts';
 import { GenericService } from '../../services/generic.service';
 
-class Drop {
-  title?: String;
-  group?: String;
-  items?: any[];
-}
 
 @Component({
   selector: 'app-datos',
@@ -19,6 +16,7 @@ class Drop {
 export class DatosComponent implements OnInit {
 
   drops: Drop[] = [];
+  filters: Filter[] = [];
   tableChart: Chart;
 
   constructor(private genericService: GenericService) { }
@@ -26,31 +24,7 @@ export class DatosComponent implements OnInit {
   ngOnInit(): void {
 
     this.llenarDrops();
-
-    this.genericService.getRoot().subscribe(
-      res => {
-        console.log(res);
-
-        this.tableChart = {
-          type: ChartType.Table,
-          columnNames: Object.keys(res[0]),
-          data: res.map((row) => {
-            let array = [];
-
-            if (Object.keys(row).length < Object.keys(res[0]).length) {
-              array = Object.keys(res[0]);
-            } else {
-              for (let key in row) {
-                array.push(row[key].substr(0, 10));
-              }
-            }
-
-            return array;
-          })
-        };
-      },
-      error => console.log(error)
-    );
+    this.llenarTable();
   }
 
   llenarDrops() {
@@ -87,7 +61,7 @@ export class DatosComponent implements OnInit {
           drop.items = res.map((json) => {
             for (const key in json) {
               if (key === drop.group) {
-                return json[key].substr(0, 10);
+                return json[key];
               }
             }
           });
@@ -95,15 +69,65 @@ export class DatosComponent implements OnInit {
         error => console.log(error)
       );
     });
+  }
 
+  llenarTable() {
+    this.genericService.getFilters(this.filters).subscribe(
+      res => {
+        console.log(res);
+
+        if (res.length === 0) {
+          alert("No se encontraron datos.");
+        } else {
+          this.tableChart = {
+            type: ChartType.Table,
+            columnNames: Object.keys(res[0]),
+            data: res.map((row) => {
+              let array = [];
+
+              if (Object.keys(row).length < Object.keys(res[0]).length) {
+                array = Object.keys(res[0]);
+              } else {
+                for (let key in row) {
+                  array.push(row[key].substr(0, 10));
+                }
+              }
+
+              return array;
+            })
+          };
+        }
+      },
+      error => console.log(error)
+    );
   }
 
   /**
    * Callback del evento "change" de los drops.
-   * @param valor, valor entregado por el evento. 
+   * @param valor, valor entregado por el evento.
+   * valor = "filter_category,filter_value"; 
    */
   filtrar(valor: String) {
     console.log(valor);
+
+    let filter = valor.split(",");
+
+    for (let i = 0; i < this.filters.length; i++) {
+      const json = this.filters[i];
+
+      if (json.category === filter[0]) {
+        this.filters.splice(i, 1);
+      }
+    }
+
+    if (filter[1] !== 'undefined') {
+      this.filters.push({
+        category: filter[0],
+        value: filter[1]
+      });
+    }
+
+    this.llenarTable();
   }
 
 }
