@@ -1,6 +1,18 @@
-<div class="row mt-4">
+<h1 class="text-center">Tabla de Datos de Casos Confirmados</h1>
+
+<div class="row p-4">
+    <select class="col-md-4 p-2 btn btn-secondary" *ngFor="let drop of drops" (change)="filtrar($event.target.value)">
+        <option value="undefined">{{ drop.title }}</option>
+        <hr>
+        <option *ngFor="let item of drop.items" [value]="[drop.group,item]">
+            {{ item }}
+        </option>
+    </select>
+</div>
+
+<div class="row mt-4 text-center">
     <div class="col-12">
-        <google-chart style="width: 100%;" [type]="tableChart.type" [columns]="tableChart.columnNames" [data]="tableChart.data"
-            [options]="tableChart.options"></google-chart>
+        <google-chart style="width: 100%;" [type]="tableChart.type" [columns]="tableChart.columnNames"
+            [data]="tableChart.data" [options]="tableChart.options"></google-chart>
     </div>
 </div>

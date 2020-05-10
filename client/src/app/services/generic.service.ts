@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { Filter } from '../models/Filter';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +17,38 @@ export class GenericService {
    * @returns Esta función esta condicionada a retornar un arreglo de objetos JSON.
    */
   getRoot(): Observable<any[]> {
-    return this.http.get<{}[]>(this.API_URI + "?$limit=50");
+    let campos = [];
+
+    campos.push("id_de_caso AS ID");
+    campos.push("fecha_de_notificaci_n AS Fecha");
+    campos.push("ciudad_de_ubicaci_n AS Ciudad");
+    campos.push("departamento AS Departamento");
+    campos.push("atenci_n AS Atención");
+    campos.push("edad AS Edad");
+    campos.push("sexo AS Sexo");
+    campos.push("pa_s_de_procedencia AS Procedencia");
+    campos.push("fecha_de_muerte AS Muerte");
+    campos.push("fecha_recuperado AS Recuperado");
+
+    return this.http.get<{}[]>(`${this.API_URI}?$select=${campos.join(',')}&$limit=100&$offset=10`);
+  }
+
+  /**
+   * @returns Esta función esta condicionada a retornar un arreglo de objetos JSON.
+   */
+  getFilters(filters: Filter[]): Observable<any[]> {
+    let options = filters.map((filter) => {
+      return `$${filter.category}=$${filter.value}`;
+    }).join("&");
+
+    return this.http.get<{}[]>(`${this.API_URI}?${options}`);
+  }
+
+  /**
+   * @returns Esta función esta condicionada a retornar un arreglo de objetos JSON.
+   */
+  getGroup(grupo: String): Observable<any[]> {
+    return this.http.get<{}[]>(`${this.API_URI}?$select=${grupo}&$group=${grupo}&$order=${grupo}`);
   }
 
   /**
