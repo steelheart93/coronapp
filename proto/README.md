@@ -9,11 +9,9 @@ Stiven Muñoz Murillo - Líder de Proyecto, stivenmm1993@gmail.com
 ## Coronavirus in Colombia
 Shows the Coronavirus Information of the API created by the Colombian Government in a friendly way for people.
 
-### Proto
+### Prototype
 
-Este es el prototipo inicial del aplicativo CoronApp Clone
-
-https://steelheart93.github.io/coronapp/
+Este es el prototipo inicial del aplicativo CoronApp Clone.
 
 # Proto Visualization
 
