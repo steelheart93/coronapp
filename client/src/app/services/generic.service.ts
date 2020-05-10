@@ -18,7 +18,6 @@ export class GenericService {
    */
   getFilters(filters: Filter[]): Observable<any[]> {
     let campos = [];
-    campos.push("id_de_caso AS ID");
     campos.push("fecha_de_notificaci_n AS Fecha");
     campos.push("ciudad_de_ubicaci_n AS Ciudad");
     campos.push("departamento AS Departamento");
@@ -29,12 +28,13 @@ export class GenericService {
     campos.push("fecha_de_muerte AS Muerte");
     campos.push("fecha_recuperado AS Recuperado");
 
+    let limit = 100000;
+
     let options = filters.map((filter) => {
       return `${filter.category}='${filter.value}'`;
     }).join("&");
 
-    console.log(`${this.API_URI}?$select=${campos.join(',')}&$limit=100&$offset=0&${options}`);
-    return this.http.get<{}[]>(`${this.API_URI}?$select=${campos.join(',')}&$limit=100&$offset=0&${options}`);
+    return this.http.get<{}[]>(`${this.API_URI}?$select=${campos.join(',')}&$limit=${limit}&${options}`);
   }
 
   /**
@@ -55,13 +55,15 @@ export class GenericService {
    * @returns Esta función esta condicionada a retornar un arreglo de objetos JSON.
    */
   getTotalAtenciones(): Observable<any[]> {
-    return this.http.get<{}[]>(`${this.API_URI}?$select=atenci_n AS atencion, count(atenci_n) AS count&$group=atenci_n&$having=count > 0`);
+    return this.http.get<{}[]>(`${this.API_URI}?$select=atenci_n AS atencion, count(atenci_n) AS count
+    &$group=atenci_n&$having=count > 0`);
   }
 
   /**
    * @returns Esta función esta condicionada a retornar un arreglo de objetos JSON.
    */
   getTotalDepartamentos(): Observable<any[]> {
-    return this.http.get<{}[]>(`${this.API_URI}?$select=departamento, count(departamento) AS count&$group=departamento&$order=count DESC&$limit=10`);
+    return this.http.get<{}[]>(`${this.API_URI}?$select=departamento, count(departamento) AS count
+    &$group=departamento&$order=count DESC&$limit=10`);
   }
 }

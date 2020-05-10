@@ -74,8 +74,6 @@ export class DatosComponent implements OnInit {
   llenarTable() {
     this.genericService.getFilters(this.filters).subscribe(
       res => {
-        console.log(res);
-
         if (res.length === 0) {
           alert("No se encontraron datos.");
         } else {
@@ -86,7 +84,8 @@ export class DatosComponent implements OnInit {
               let array = [];
 
               if (Object.keys(row).length < Object.keys(res[0]).length) {
-                array = Object.keys(res[0]);
+                let str = "Incompleto,".repeat(Object.keys(res[0]).length - 1) + "Incompleto";
+                array = str.split(',');
               } else {
                 for (let key in row) {
                   array.push(row[key].substr(0, 10));
@@ -94,7 +93,14 @@ export class DatosComponent implements OnInit {
               }
 
               return array;
-            })
+            }),
+            options: {
+              "cssClassNames": {
+                'headerRow': 'bg-dark'
+              },
+              "pageSize": 25,
+              "showRowNumber": true
+            }
           };
         }
       },
