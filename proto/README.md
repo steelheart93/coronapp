@@ -13,6 +13,6 @@ Shows the Coronavirus Information of the API created by the Colombian Government
 
 Este es el prototipo inicial del aplicativo CoronApp Clone.
 
-# Proto Visualization
+## Proto Visualization
 
 ![coronavirus](coronavirus.png)
