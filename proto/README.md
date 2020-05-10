@@ -11,3 +11,7 @@ Stiven Muñoz Murillo - Líder de Proyecto, stivenmm1993@gmail.com
 Este es el prototipo inicial del aplicativo CoronApp Clone
 
 https://steelheart93.github.io/coronapp/
+
+# Proto Visualization
+
+![coronavirus](coronavirus.png)
